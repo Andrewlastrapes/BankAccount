@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var handlebars = require("express-handlebars")
+var handlebars = require("express-handlebars");
+var mongoose = require("mongoose");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -14,9 +15,11 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.engine("handlebars", handlebars({defaultLayout: "layout"}))
+app.engine(".hbs", handlebars({defaultLayout: "layout", extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', '.hbs');
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
