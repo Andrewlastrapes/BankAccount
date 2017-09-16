@@ -4,7 +4,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/accounts")
 
 
 var schema = new mongoose.Schema({
-	username: String,
+	username: String, unique: true,
 	password: String,
 	account : Number 
 }); 
