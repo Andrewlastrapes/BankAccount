@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
+var bcrypt = require("bcrypt-nodejs");
 
-mongoose.connect("mongodb://127.0.0.1:27017/accounts")
 
 
 var schema = new mongoose.Schema({
@@ -8,6 +8,15 @@ var schema = new mongoose.Schema({
 	password: String,
 	account : Number 
 }); 
+
+schema.methods.encryptPassword = function(password) {
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null); 
+}
+
+schema.methods.validPassword = function(password){
+	return bcrypt.compareSync(password, this.password);
+	 
+}
 
 module.exports = mongoose.model("accounts", schema);
 

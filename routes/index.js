@@ -3,6 +3,7 @@ var router = express.Router();
 var csrf = require("csurf");
 
 var csrfProtection = csrf();
+router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,7 +28,7 @@ router.post("/login", function(req, res, next){
 	var username = req.body.username
 	var password = req.body.password
 
-
+	res.redirect("account");
 
 })
 
